@@ -931,6 +931,7 @@ private:
     bool m_bHfrMode;
     int32_t mHfrMode;
     bool m_bDisplayFrame;
+    int32_t mExposureTime;
     bool m_bAeBracketingEnabled;
     int32_t mFlashValue;
     int32_t mFlashDaemonValue;

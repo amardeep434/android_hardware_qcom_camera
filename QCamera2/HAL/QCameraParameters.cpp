@@ -361,8 +361,6 @@ const char QCameraParameters::KEY_SELECTED_AUTO_SCENE[] = "selected-auto-scene";
 static const char* portrait = "portrait";
 static const char* landscape = "landscape";
 
-static int32_t mExposureTime = 0;
-
 const cam_dimension_t QCameraParameters::THUMBNAIL_SIZES_MAP[] = {
     { 512, 288 }, //1.777778
     { 480, 288 }, //1.666667
@@ -737,6 +735,7 @@ QCameraParameters::QCameraParameters()
       m_bHfrMode(false),
       mHfrMode(CAM_HFR_MODE_OFF),
       m_bDisplayFrame(true),
+      mExposureTime(0),
       m_bAeBracketingEnabled(false),
       mFlashValue(CAM_FLASH_MODE_OFF),
       mFlashDaemonValue(CAM_FLASH_MODE_OFF),
@@ -831,6 +830,7 @@ QCameraParameters::QCameraParameters(const String8 &params)
     m_bSeeMoreOn(false),
     m_bHfrMode(false),
     mHfrMode(CAM_HFR_MODE_OFF),
+    mExposureTime(0),
     m_bAeBracketingEnabled(false),
     mFlashValue(CAM_FLASH_MODE_OFF),
     mFlashDaemonValue(CAM_FLASH_MODE_OFF),
