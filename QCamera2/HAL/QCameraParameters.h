@@ -681,6 +681,8 @@ public:
     int32_t  updateCurrentFocusPosition(int32_t pos);
     bool isDisplayFrameNeeded() { return m_bDisplayFrame; };
     int32_t setDisplayFrame(bool enabled) {m_bDisplayFrame=enabled; return 0;};
+    void setPrvwIsoMode(int32_t isoValue);
+    int32_t getPrvwIsoMode();
     bool isAdvCamFeaturesEnabled() {return isUbiFocusEnabled() ||
             isChromaFlashEnabled() || isOptiZoomEnabled() || isHDREnabled() ||
             isfssrEnabled() || isMultiTouchFocusEnabled();}
@@ -932,6 +934,8 @@ private:
     int32_t mHfrMode;
     bool m_bDisplayFrame;
     int32_t mExposureTime;
+    int32_t mPrvwIsoMode;
+    int32_t mManualIso;
     bool m_bAeBracketingEnabled;
     int32_t mFlashValue;
     int32_t mFlashDaemonValue;
