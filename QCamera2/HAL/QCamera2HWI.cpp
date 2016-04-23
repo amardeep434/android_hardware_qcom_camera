@@ -1085,6 +1085,7 @@ QCamera2HardwareInterface::QCamera2HardwareInterface(uint32_t cameraId)
       mPostviewJob(-1),
       mMetadataJob(-1),
       mReprocJob(-1),
+      mCurrFrameCnt(0),
       mRawdataJob(-1),
       mPreviewFrameSkipValid(0),
       mAdvancedCaptureConfigured(false),
