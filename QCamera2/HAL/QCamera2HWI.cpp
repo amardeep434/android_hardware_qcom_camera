@@ -2088,6 +2088,26 @@ QCameraHeapMemory *QCamera2HardwareInterface::allocateStreamInfoBuf(
         }
     }
 
+    if (!isZSLMode()) {
+        if (gCamCapability[mCameraId]->min_required_pp_mask & CAM_QCOM_FEATURE_SHARPNESS) {
+            streamInfo->pp_config.feature_mask |= CAM_QCOM_FEATURE_SHARPNESS;
+            streamInfo->pp_config.sharpness = mParameters.getInt(QCameraParameters::KEY_QC_SHARPNESS);
+            if (streamInfo->pp_config.sharpness > MAX_REAL_SHARPNESS)
+                streamInfo->pp_config.sharpness = MAX_REAL_SHARPNESS;
+        }
+
+        if (gCamCapability[mCameraId]->min_required_pp_mask & CAM_QCOM_FEATURE_EFFECT) {
+            streamInfo->pp_config.feature_mask |= CAM_QCOM_FEATURE_EFFECT;
+            effect = mParameters.get(CameraParameters::KEY_EFFECT);
+            streamInfo->pp_config.effect = getEffectValue(effect);
+        }
+        if (mParameters.isWNREnabled() && (mParameters.getRecordingHintValue() == false)) {
+            streamInfo->pp_config.feature_mask |= CAM_QCOM_FEATURE_DENOISE2D;
+            streamInfo->pp_config.denoise2d.denoise_enable = 1;
+            streamInfo->pp_config.denoise2d.process_plates = mParameters.getWaveletDenoiseProcessPlate();
+        }
+    }
+
     return streamInfoBuf;
 }
 
@@ -5255,6 +5275,8 @@ QCameraReprocessChannel *QCamera2HardwareInterface::addReprocChannel(
                 !mParameters.isOptiZoomEnabled()) {
             pp_config.feature_mask |= CAM_QCOM_FEATURE_SHARPNESS;
             pp_config.sharpness = mParameters.getInt(QCameraParameters::KEY_QC_SHARPNESS);
+            if (pp_config.sharpness > MAX_REAL_SHARPNESS)
+                pp_config.sharpness = MAX_REAL_SHARPNESS;
         }
 
         if (gCamCapability[mCameraId]->min_required_pp_mask & CAM_QCOM_FEATURE_CROP) {
