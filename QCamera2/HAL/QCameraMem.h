@@ -203,6 +203,7 @@ private:
     uint8_t mMetaBufCount;
     native_handle_t *mNativeHandle[MM_CAMERA_MAX_NUM_FRAMES];
 };
+;
 
 // Gralloc Memory is acquired from preview window
 class QCameraGrallocMemory : public QCameraMemory {
